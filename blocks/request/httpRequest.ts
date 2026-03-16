@@ -29,7 +29,7 @@ export const httpRequest: AppBlock = {
         queryParams: {
           name: "Query Parameters",
           description:
-            "URL query parameters as a JSON object (e.g., { \"per_page\": \"50\", \"page\": \"2\" })",
+            'URL query parameters as a JSON object (e.g., { "per_page": "50", "page": "2" })',
           type: {
             type: "object",
           },
@@ -37,7 +37,8 @@ export const httpRequest: AppBlock = {
         },
         body: {
           name: "Body",
-          description: "Request body as a JSON object (for POST and PUT requests)",
+          description:
+            "Request body as a JSON object (for POST and PUT requests)",
           type: {
             type: "object",
             additionalProperties: true,

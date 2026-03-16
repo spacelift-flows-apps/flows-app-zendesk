@@ -58,26 +58,27 @@ export const getTicket: AppBlock = {
         properties: {
           id: {
             type: "string",
-            description: "Ticket ID"
+            description: "Ticket ID",
           },
           subject: {
             type: "string",
-            description: "Ticket subject"
+            description: "Ticket subject",
           },
-          description: { 
+          description: {
             type: "string",
-            description: "Ticket description" },
+            description: "Ticket description",
+          },
           status: {
             type: "string",
-            description: "Ticket status" 
+            description: "Ticket status",
           },
           priority: {
             type: "string",
-            description: "Ticket priority"
+            description: "Ticket priority",
           },
           type: {
             type: "string",
-            description: "Ticket type"
+            description: "Ticket type",
           },
           assigneeId: {
             type: "string",

@@ -119,7 +119,7 @@ export const updateTicket: AppBlock = {
         customFields: {
           name: "Custom Fields",
           description:
-            "Custom ticket fields as a JSON object mapping field IDs to values (e.g., { \"12345\": \"value\" })",
+            'Custom ticket fields as a JSON object mapping field IDs to values (e.g., { "12345": "value" })',
           type: {
             type: "object",
           },
