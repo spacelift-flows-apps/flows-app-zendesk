@@ -78,6 +78,7 @@ export const createTicket: AppBlock = {
             'Custom ticket fields as a JSON object mapping field IDs to values (e.g., { "12345": "value" })',
           type: {
             type: "object",
+            additionalProperties: true,
           },
           required: false,
         },

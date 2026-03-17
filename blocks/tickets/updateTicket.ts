@@ -72,6 +72,7 @@ export const updateTicket: AppBlock = {
             "Additional ticket fields as a JSON object merged directly into the ticket update payload",
           type: {
             type: "object",
+            additionalProperties: true,
           },
           required: false,
         },

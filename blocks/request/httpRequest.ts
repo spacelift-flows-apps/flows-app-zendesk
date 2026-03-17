@@ -32,6 +32,7 @@ export const httpRequest: AppBlock = {
             'URL query parameters as a JSON object (e.g., { "per_page": "50", "page": "2" })',
           type: {
             type: "object",
+            additionalProperties: true,
           },
           required: false,
         },
@@ -51,6 +52,7 @@ export const httpRequest: AppBlock = {
             "Additional HTTP headers as a JSON object (Authorization is set automatically)",
           type: {
             type: "object",
+            additionalProperties: true,
           },
           required: false,
         },
