@@ -127,6 +127,7 @@ async function fetchGroups(
 export const getGroups = memoizee(fetchGroups, {
   maxAge: 60000,
   promise: true,
+  length: 3,
 });
 
 async function fetchAgents(
@@ -144,4 +145,5 @@ async function fetchAgents(
 export const getAgents = memoizee(fetchAgents, {
   maxAge: 60000,
   promise: true,
+  length: 3,
 });
