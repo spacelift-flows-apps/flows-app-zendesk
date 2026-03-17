@@ -1,9 +1,6 @@
 import { AppBlock, events } from "@slflows/sdk/v1";
-import {
-  createZendeskClient,
-  getGroups,
-  getAgents,
-} from "../../utils/zendeskClient";
+import { createZendeskClient } from "../../utils/zendeskClient";
+import { assigneeConfig, groupConfig } from "../../utils/suggestValues";
 
 export const createTicket: AppBlock = {
   name: "Create Ticket",
@@ -60,62 +57,8 @@ export const createTicket: AppBlock = {
           type: "string",
           required: false,
         },
-        assigneeId: {
-          name: "Assignee",
-          description: "The agent to assign the ticket to",
-          type: "string",
-          required: false,
-          suggestValues: async (input) => {
-            const { subdomain, email, apiToken } = input.app.config;
-            const agents = await getAgents(
-              subdomain as string,
-              email as string,
-              apiToken as string,
-            );
-
-            let values = agents.map((agent) => ({
-              label: `${agent.name} (${agent.email})`,
-              value: String(agent.id),
-            }));
-
-            if (input.searchPhrase) {
-              const searchLower = input.searchPhrase.toLowerCase();
-              values = values.filter((v) =>
-                v.label.toLowerCase().includes(searchLower),
-              );
-            }
-
-            return { suggestedValues: values.slice(0, 50) };
-          },
-        },
-        groupId: {
-          name: "Group",
-          description: "The group to assign the ticket to",
-          type: "string",
-          required: false,
-          suggestValues: async (input) => {
-            const { subdomain, email, apiToken } = input.app.config;
-            const groups = await getGroups(
-              subdomain as string,
-              email as string,
-              apiToken as string,
-            );
-
-            let values = groups.map((group) => ({
-              label: group.name,
-              value: String(group.id),
-            }));
-
-            if (input.searchPhrase) {
-              const searchLower = input.searchPhrase.toLowerCase();
-              values = values.filter((v) =>
-                v.label.toLowerCase().includes(searchLower),
-              );
-            }
-
-            return { suggestedValues: values.slice(0, 50) };
-          },
-        },
+        assigneeId: assigneeConfig,
+        groupId: groupConfig,
         tags: {
           name: "Tags",
           description: "Tags to add to the ticket",
