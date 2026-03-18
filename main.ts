@@ -193,6 +193,14 @@ export const app = defineApp({
   http: {
     async onRequest(input) {
       try {
+        if (input.request.path !== "/webhook") {
+          await http.respond(input.request.requestId, {
+            statusCode: 404,
+            body: "Not Found",
+          });
+          return;
+        }
+
         // Verify Zendesk webhook signature
         const signature = input.request.headers["X-Zendesk-Webhook-Signature"];
         const timestamp =
@@ -218,12 +226,13 @@ export const app = defineApp({
           .update(signBody, "utf8")
           .digest("base64");
 
+        const expected = Buffer.from(expectedSignature, "utf8");
+        const actual = Buffer.from(signature as string, "utf8");
+
         // Constant-time comparison
         if (
-          !crypto.timingSafeEqual(
-            Buffer.from(expectedSignature, "utf8"),
-            Buffer.from(signature as string, "utf8"),
-          )
+          expected.length !== actual.length ||
+          !crypto.timingSafeEqual(expected, actual)
         ) {
           console.warn("Webhook request rejected: Invalid signature");
           await http.respond(input.request.requestId, {
