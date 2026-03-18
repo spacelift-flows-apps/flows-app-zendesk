@@ -1,32 +1,37 @@
-/**
- * Block Registry for {{APP_NAME}}
- *
- * This file exports all blocks as a dictionary for easy registration.
- *
- * Usage in main.ts:
- *   import { blocks } from "./blocks/index.ts";
- *   export const app: App = {
- *     blocks: Object.values(blocks)
- *   };
- *
- * Adding new blocks:
- * 1. Create your block file (e.g., myBlock.ts)
- * 2. Import and add it to the blocks dictionary below
- * 3. Export it for type safety and external use
- */
+// Ticket action blocks
+import { createTicket } from "./tickets/createTicket";
+import { updateTicket } from "./tickets/updateTicket";
+import { getTicket } from "./tickets/getTicket";
+import { addComment } from "./tickets/addComment";
+import { searchTickets } from "./tickets/searchTickets";
+import { transitionTicket } from "./tickets/transitionTicket";
+import { assignTicket } from "./tickets/assignTicket";
 
-import { exampleBlock } from "./exampleBlock";
+// Webhook subscription blocks
+import { ticketCreated } from "./webhooks/ticketCreated";
+import { ticketUpdated } from "./webhooks/ticketUpdated";
+import { commentAdded } from "./webhooks/commentAdded";
+import { catchAllSubscription } from "./webhooks/catchAllSubscription";
 
-/**
- * Dictionary of all available blocks
- * Key: block identifier (for programmatic access)
- * Value: block definition
- */
+// Escape hatch
+import { httpRequest } from "./request/httpRequest";
+
 export const blocks = {
-  example: exampleBlock,
-  // Add more blocks here:
-  // myNewBlock: myNewBlock,
-} as const;
+  // Ticket Management
+  createTicket,
+  updateTicket,
+  getTicket,
+  addComment,
+  searchTickets,
+  transitionTicket,
+  assignTicket,
 
-// Named exports for individual blocks (optional, for external imports)
-export { exampleBlock };
+  // Webhook Events
+  ticketCreated,
+  ticketUpdated,
+  commentAdded,
+  catchAllSubscription,
+
+  // Request
+  httpRequest,
+} as const;
