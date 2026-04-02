@@ -4,6 +4,7 @@ export const ticketCreated: AppBlock = {
   name: "Ticket Created",
   description: "Triggered when a new Zendesk ticket is created",
   category: "Webhooks",
+  entrypoint: true,
 
   inputs: {},
 

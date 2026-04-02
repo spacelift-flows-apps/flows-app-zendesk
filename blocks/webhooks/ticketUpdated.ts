@@ -5,6 +5,7 @@ export const ticketUpdated: AppBlock = {
   description:
     "Triggered when a Zendesk ticket is updated (status, priority, assignment, subject, tags, or type changes)",
   category: "Webhooks",
+  entrypoint: true,
 
   inputs: {},
 
