@@ -4,6 +4,7 @@ export const commentAdded: AppBlock = {
   name: "Comment Added",
   description: "Triggered when a comment is added to a Zendesk ticket",
   category: "Webhooks",
+  entrypoint: true,
 
   inputs: {},
 

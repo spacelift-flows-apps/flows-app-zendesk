@@ -5,6 +5,7 @@ export const catchAllSubscription: AppBlock = {
   description:
     "Receives all Zendesk webhook events. Use this as an escape hatch to handle event types not covered by other subscription blocks.",
   category: "Webhooks",
+  entrypoint: true,
 
   inputs: {},
 
